@@ -2,7 +2,7 @@
 # With help by https://piotrszul.github.io/spark-tutorial/notebooks/3.1_ML-Introduction.html
 
 from pyspark.sql import SparkSession
-from pyspark.ml.freature import VectorAssembler
+from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
@@ -53,7 +53,7 @@ cvModel = validator.fit(trainingDF)
 cvTestPredictionsDF = cvModel.transform(testDF)
 
 #Output from validator
-prin("RMSE on test data with CV = %g" % regressionEvaluator.evaluate(cvTestPredictionsDF))
+print("RMSE on test data with CV = %g" % regressionEvaluator.evaluate(cvTestPredictionsDF))
 
 # define the random forest function with hyperparameters
 rf = RandomForestRegressor(featuresCol="features", labelCol="quality", numTrees=70, maxBins=128, maxDepth=10, \
